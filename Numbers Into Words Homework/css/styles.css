@@ -1,0 +1,31 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.secondInput {
+    width: 500px;
+}
+
+.mainContainer {
+    text-align: center;
+    background-color: rgba(165, 42, 42, 0.274);
+
+}
+.mainContainer h3 {
+    color: red;
+    font-size: 3rem;
+    padding: 1rem;
+}
+button {
+    padding: 5px;
+    width: 6rem;
+    margin: 10px 0;
+}
+button:hover {
+    color:red;
+    background-color: rgba(255, 66, 66, 0.26);
+}
+input {
+    color: red;
+    border-color: rgba(220, 20, 60, 0.466);
+}
