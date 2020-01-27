@@ -21,34 +21,22 @@ $(function () {
 
         information.results.forEach((filminfo) => {
 
-            // Vtoriot Ajax Povik mora da e vo ovaa funckija poradi toa shto ne ja fajka na drugo mesto
-            $("#myTabBody").append(`
-            <tr>
-                <td>${filminfo.title}</td>
-                <td>${filminfo.director}</td>
-                <td>${filminfo.producer}</td>
-                <td>${filminfo.episode_id}</td>
-                <td><a href="${filminfo.url}" target="blank"</a>URL of The Movie Info</td>
-                <td><span style="color: red;">${filminfo.characters.length}</span> Characters Casted in the Movie</td>
-                <td><span style="color: red;">${filminfo.planets.length}</span> Planets are Involved in the Movie</td>
-                <td><span style="color: red;">${filminfo.starships.length}</span> Starships are Involved in the Movie</td>
-                <td><span style="color: red;">${filminfo.vehicles.length}</span> Vehicles are Involved in the Movie</td>
-                <td><span style="color: red;">${filminfo.species.length}</span> Spieces are Involved in the Movie</td>
-                <td></td> 
-            </tr> `)
-
-            $("#myTabBody").empty();
-
-            // Veke koga od prvoto API INFO gi zedov charaters.API ovde moram da go povikam APITO za characters (nad ovoj scope ne go fakase)
             $.ajax({
                 url: filminfo.characters[0],
                 success: response => {
-                    let respArray = [];
-                    respArray.push(response)
-                    testingforNames.push(response)
-                    console.log(respArray[0].name) // Kako ovoj response koj da go Printam vo gornoto TD :D 
-                    // Ovde nemozev da ja RE-iskoristam gornata funkcija. 
-                    $("#myTabBody").append(`
+                  
+                    movieInfor(response)
+                },
+                error: error => {
+                    errorResult(error)
+                }
+            })
+
+            function movieInfor(movieInfor){
+                let respArray = [];
+                respArray.push(movieInfor)
+                testingforNames.push(movieInfor)
+                $("#myTabBody").append(`
                 <tr>
                     <td>${filminfo.title}</td>
                     <td>${filminfo.director}</td>
@@ -64,11 +52,7 @@ $(function () {
                 </tr>
                     
                 `)
-                },
-                error: error => {
-                    errorResult(error)
-                }
-            })
+            }
 
         });
 
