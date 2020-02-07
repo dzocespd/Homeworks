@@ -1,5 +1,6 @@
 // console.log("connected");
-
+const myUl = document.getElementById("myUl");
+const myParagTime = document.getElementById("myParag");
 // ********************  Task 1 ********************
 
 // function testNumber (number){
@@ -80,7 +81,7 @@ let allToCaps = (array) => {
             }, 2000)
 
         }
-    })
+    });
 };
 
 // Test Print this function
@@ -128,14 +129,34 @@ let sortinArray = (array) => {
 
 // Final Print 
 
+let printAll = (fruits) => {
+    for (const fruit of fruits) {
+        myUl.innerHTML += `
+        <li>${fruit}</li>
+        `
+    };
+
+};
+
+
 async function showArrayAsync(array) {
     try {
         const allCapita = await allToCaps(array)
         //    console.log(await allToCaps(array))
-        console.log(await sortinArray(allCapita))
+        console.log(await sortinArray(allCapita)) // Ako ova ne se printa vo console po brzo se printa u innertext
+        printAll(await sortinArray(allCapita))
+        myParagTime.style.color = "blue";
+        myParagTime.innerText = (`Everything is done in ${Math.round(performance.now())} ms`);
     } catch (err) {
-        console.log(err);
+        myParagTime.innerText = " ";
+        myParagTime.style.color = "red";
+        myParagTime.innerText += `
+        ${err}
+        Everything is done in ${Math.round(performance.now())} ms
+        `;
+
     };
-    console.log(`Everything is done in ${Math.round(performance.now())} ms`)
+    
+
 };
 showArrayAsync(fruits);
